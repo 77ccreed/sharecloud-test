@@ -1,0 +1,3 @@
+const NUM_MONTHS_IN_QUARTER = 3;
+
+export default NUM_MONTHS_IN_QUARTER;
