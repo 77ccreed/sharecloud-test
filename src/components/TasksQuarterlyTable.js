@@ -56,22 +56,40 @@ const QuarterlyTableTaskRow = ({ task, currentQuarter, quarterWeeks, currentDate
 
         week = week + (currentQuarter - 1) * NUM_MONTHS_IN_QUARTER * 4 + getAddDays(currentQuarter);
 
-        const isTaskBelongsToCurrentYear = task.start.includes(currentYear) && task.end.includes(currentYear);
+        let isTaskBelongsToCurrentYear = task.start.includes(currentYear) && task.end.includes(currentYear);
+
+        const isTaskTakeMoreThenOneYear = new Date(task.start).getFullYear() !== new Date(task.end).getFullYear();
+
+        if (isTaskTakeMoreThenOneYear) {
+          if (task.start.includes(currentYear)) {
+
+            task.endWeek = 52
+            isTaskBelongsToCurrentYear = true;
 
 
-        const bgColor = week >= task.startWeek && week <= task.endWeek && isTaskBelongsToCurrentYear
+          } else if (task.end.includes(currentYear)) {
+            task.startWeek = 1
+            isTaskBelongsToCurrentYear = true;
+          }
+        }
+
+        const isTaskMustBeColored = week >= task.startWeek && week <= task.endWeek && isTaskBelongsToCurrentYear
           ? 'green.300'
           : 'gray.50';
+
         const title =
           week >= task.startWeek && week <= task.endWeek && isTaskBelongsToCurrentYear
             ? [task.name, task.start, task.end].join(' - ')
             : '';
 
+        task.startWeek = getWeek(new Date(task.start));
+        task.endWeek = getWeek(new Date(task.end));
+
         return (
           <Tooltip hasArrow fontSize='md' label={title} aria-label={title} key={week}>
             <Td
               key={week}
-              bg={bgColor}
+              bg={isTaskMustBeColored}
               color={"gray.500"}
               fontSize={"16px"}
               fontWeight={"medium"}
