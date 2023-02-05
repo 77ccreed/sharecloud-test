@@ -113,78 +113,12 @@ const QuarterlyTableTaskRow = ({ task, currentQuarter, quarterWeeks, currentDate
   );
 };
 
-/*
-const QuarterlyTableTaskRow = ({ task, currentQuarter, quarterWeeks, currentDate }) => {
-
-  return (
-    <Tr key={task.id + task.name}>
-      {quarterWeeks().map(week => {
-        const currentYear = currentDate.getFullYear();
-
-        week = week + (currentQuarter - 1) * NUM_MONTHS_IN_QUARTER * 4 + getAddDays(currentQuarter);
-
-        let isTaskBelongsToCurrentYear = task.start.includes(currentYear) && task.end.includes(currentYear);
-
-        const isTaskTakeMoreThenOneYear = new Date(task.start).getFullYear() !== new Date(task.end).getFullYear();
-
-        if (isTaskTakeMoreThenOneYear) {
-          if (task.start.includes(currentYear)) {
-
-            task.endWeek = 52
-            isTaskBelongsToCurrentYear = true;
-
-
-          } else if (task.end.includes(currentYear)) {
-            task.startWeek = 1
-            isTaskBelongsToCurrentYear = true;
-          }
-        }
-
-        const isTaskMustBeColored = week >= task.startWeek && week <= task.endWeek && isTaskBelongsToCurrentYear
-          ? 'green.300'
-          : 'gray.50';
-
-        const title =
-          week >= task.startWeek && week <= task.endWeek && isTaskBelongsToCurrentYear
-            ? [task.name, task.start, task.end].join(' - ')
-            : '';
-
-        task.startWeek = getWeek(new Date(task.start));
-        task.endWeek = getWeek(new Date(task.end));
-
-        return (
-          <Tooltip hasArrow fontSize='md' label={title} aria-label={title} key={week}>
-            <Td
-              key={week}
-              bg={isTaskMustBeColored}
-              color={"gray.500"}
-              fontSize={"16px"}
-              fontWeight={"medium"}
-              textTransform={"uppercase"}
-              letterSpacing={"wider"}
-              textAlign={"center"}
-              borderWidth={"1px"}
-              borderColor={"gray.200"}
-            >
-              <Text>
-                {""}
-              </Text>
-            </Td>
-          </Tooltip>
-        );
-      })}
-    </Tr>
-  )
-}*/
-
-
 const TasksQuarterlyTable = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [tasks, setTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
 
   const toast = useToast()
-
 
   const [currentQuarter, monthNames] = useMemo(() => {
     const cq = getQuarter(currentDate);
@@ -227,7 +161,6 @@ const TasksQuarterlyTable = () => {
       id: Date.now()
     };
 
-    // Add the new task to the tasks array. Dont add more than 10 tasks
     if (tasks.length >= 10) {
       toast({
         title: "You can't add more than 10 tasks",
