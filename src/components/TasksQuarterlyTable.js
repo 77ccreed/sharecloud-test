@@ -250,7 +250,7 @@ const TasksQuarterlyTable = () => {
         ) : null
       }
       {tasks.length > 0 ? (
-        <Box textAlign="left" fontSize="2xl" fontWeight="bold" p={4}>Tasks List</Box>
+        <Text fontSize="xl" fontWeight="bold" mt={8}>Tasks List</Text>
       ) : null}
 
 
