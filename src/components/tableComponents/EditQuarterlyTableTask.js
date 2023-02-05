@@ -80,11 +80,11 @@ const EditQuarterlyTableTask = ({ task, tasks, setTasks, handleSaveTask, handleC
     >
       {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
         <Form>
-          <Divider mb={4} />
+          <Divider borderColor="gray.200" borderWidth="2px" />
           <Text fontSize="xl" fontWeight="bold" mb={4}>
             Edit Task
           </Text>
-          <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+          <Grid templateColumns={{ base: "repeat(1, 1fr)", xl: "repeat(3, 1fr)" }} gap={4} mt={4}>
             <TaskNameInput
               value={values.name}
               onChange={handleChange}
@@ -107,14 +107,18 @@ const EditQuarterlyTableTask = ({ task, tasks, setTasks, handleSaveTask, handleC
               touched={touched}
             />
           </Grid>
-          <Button type="submit" disabled={isSubmitting} mt={4} mr={2} colorScheme="teal">
-            Save Task <CalendarIcon ml={2} />
-          </Button>
-          <Button onClick={handleDelete} mt={4} mr={2} colorScheme="teal">Delete Task <DeleteIcon ml={2} />
-          </Button>
-          <Button onClick={handleCancelEdit} mt={4} mr={2} colorScheme="teal">Cancel <CloseIcon ml={2} />
-          </Button>
-          <Divider mt={4} mb={4} />
+          <Grid templateColumns={{ base: "repeat(1, 1fr)", xl: "repeat(3, 1fr)" }} gap={4} mt={4}>
+            <Button type="submit" disabled={isSubmitting} mt={4} mr={2} colorScheme="green">
+              Save Task <CalendarIcon ml={2} />
+            </Button>
+            <Button onClick={handleDelete} mt={4} mr={2} colorScheme="red">
+              Delete Task <DeleteIcon ml={2} />
+            </Button>
+            <Button onClick={handleCancelEdit} mt={4} mr={2} colorScheme="gray">
+              Cancel <CloseIcon ml={2} />
+            </Button>
+          </Grid>
+          <Divider borderColor="gray.200" borderWidth="2px" mb={4} mt={4} />
         </Form>
       )}
     </Formik>

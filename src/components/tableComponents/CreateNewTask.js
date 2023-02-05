@@ -29,8 +29,10 @@ const CreateNewTask = ({ submitTaskForm }) => {
       {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
         <Form>
           <Text fontSize="xl" fontWeight="bold" mt={8}>Add New Task</Text>
-
-          <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+          {/*
+        small screen: 1 column, big screen: 3 columns
+        */}
+          <Grid templateColumns={{ base: "repeat(1, 1fr)", xl: "repeat(3, 1fr)" }} gap={4} mt={4}>
             <Stack mt={4}>
               <FormControl>
                 <FormLabel htmlFor="name">Task Name</FormLabel>

@@ -7,6 +7,7 @@ import {
   List,
   ListItem,
   Table,
+  TableContainer,
   Tbody,
   Tr,
   Td,
@@ -49,7 +50,7 @@ const getAddDays = (currentQuarter) => {
 
 const QuarterlyTableTaskRow = ({ task, currentQuarter, quarterWeeks, currentDate }) => {
   return (
-    <Tr key={task.id + task.name}>
+    <Tr key={task.id + task.name} textTransform="uppercase" letterSpacing="wider" textAlign="center" borderWidth="1px" borderColor="gray.200" fontSize="16px" fontWeight="medium">
       {quarterWeeks().map(week => {
         const currentYear = currentDate.getFullYear();
 
@@ -227,12 +228,13 @@ const TasksQuarterlyTable = () => {
   }
 
   return (
-    <Container maxW="container.xl">
+    <TableContainer maxW="container.xl" w={{ base: "100%", md: "80%" }}
+      p={4} overflow="scroll" m="auto">
       <Box textAlign="center" fontSize="4xl" fontWeight="bold" p={4}>Quarterly Tasks {" "}{currentDate.getFullYear()}</Box>
       <QuarterlyTableHeader monthNames={monthNames} />
-      <Table>
+      <Table variant="simple" size={{ base: "sm", md: "md" }}>
 
-        <Tbody>
+        <Tbody >
           <CurrentQuarterWeeks currentQuarter={currentQuarter} quarterWeeks={quarterWeeks} />
 
           {tasks.map(task => {
@@ -258,7 +260,7 @@ const TasksQuarterlyTable = () => {
         {
           tasks.map((task) => (
 
-            <ListItem key={task.id} display="flex" alignItems="left" ml={0}>
+            <ListItem key={task.id} ml={0} w="100%">
               {editingTask && task.id === editingTask.id ? (
                 <EditQuarterlyTableTask task={task} handleEditTask={handleEditTask} handleSaveTask={handleSaveTask} handleCancelEdit={handleCancelEdit}
                   setEditingTask={setEditingTask} tasks={tasks} setTasks={setTasks}
@@ -277,7 +279,7 @@ const TasksQuarterlyTable = () => {
       <Divider borderColor="gray.200" borderWidth="2px" />
 
       <CreateNewTask submitTaskForm={submitTaskForm} />
-    </Container>
+    </TableContainer>
   );
 }
 

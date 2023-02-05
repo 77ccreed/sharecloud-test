@@ -21,14 +21,15 @@ const CurrentQuarterWeeks = ({ currentQuarter, quarterWeeks }) => {
   const weekNumbers = quarterWeeks().map((week, index) => {
     const quarterWeek = (currentQuarter - 1) * NUM_MONTHS_IN_QUARTER * 4 + addDays + index + 1;
     return (
+      //make smaller screen smaller, make bigger screen bigger
       <Td
         key={quarterWeek}
         bg={"gray.100"}
         color={"gray.500"}
-        fontSize={"16px"}
-        fontWeight={"medium"}
+        fontSize={{ base: "xs", xl: "md" }}
+        fontWeight={{ base: "xs", xl: "medium" }}
         textTransform={"uppercase"}
-        letterSpacing={"wider"}
+        letterSpacing={{ base: "small", xl: "wider" }}
         textAlign={"center"}
         borderWidth={"1px"}
         borderColor={"gray.200"}
@@ -40,7 +41,7 @@ const CurrentQuarterWeeks = ({ currentQuarter, quarterWeeks }) => {
   });
 
   return (
-    <Tr key={currentQuarter}>
+    <Tr key={currentQuarter} w="100%">
       {weekNumbers}
     </Tr>
   );
