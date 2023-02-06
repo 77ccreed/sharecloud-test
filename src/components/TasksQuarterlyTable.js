@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { addMonths, getQuarter, getWeek, format, differenceInCalendarISOWeeks } from 'date-fns';
 import {
-  Container,
   Box,
   Divider,
   List,
@@ -143,7 +142,7 @@ const TasksQuarterlyTable = () => {
 
 
   //use Formik to validate the form
-  const submitTaskForm = (values, isValidating, isSubmitting) => {
+  const submitTaskForm = (values) => {
 
     // Calculate the week number that the task starts on
     const startDate = new Date(values.start);
@@ -181,13 +180,9 @@ const TasksQuarterlyTable = () => {
       })
     }
 
-
     values.name = '';
     values.start = '';
     values.end = '';
-
-    isSubmitting = false;
-    isValidating = false;
   }
 
   const handleEditTask = (task) => {

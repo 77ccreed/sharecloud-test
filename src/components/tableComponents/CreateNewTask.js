@@ -26,7 +26,7 @@ const CreateNewTask = ({ submitTaskForm }) => {
       validationSchema={validationSchema}
       onSubmit={submitTaskForm}
     >
-      {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
+      {({ values, errors, touched, handleChange, handleBlur }) => (
         <Form>
           <Text fontSize="xl" fontWeight="bold" mt={8}>Add New Task</Text>
           {/*
@@ -96,8 +96,6 @@ const CreateNewTask = ({ submitTaskForm }) => {
             mt={4}
             mb={8}
             colorScheme="teal"
-            //isLoading={isSubmitting || isValidating}
-            //loadingText="Submitting"
             type="submit">
             Add Task
             <SmallAddIcon ml={1} />

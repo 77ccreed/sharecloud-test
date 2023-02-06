@@ -33,7 +33,6 @@ const CurrentQuarterWeeks = ({ currentQuarter, quarterWeeks }) => {
         textAlign={"center"}
         borderWidth={"1px"}
         borderColor={"gray.200"}
-
       >
         {quarterWeek}
       </Td>
