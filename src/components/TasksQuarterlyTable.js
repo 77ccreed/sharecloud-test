@@ -102,9 +102,6 @@ const QuarterlyTableTaskRow = ({ task, currentQuarter, quarterWeeks, currentDate
               borderWidth={"1px"}
               borderColor={"gray.200"}
             >
-              <Text>
-                {""}
-              </Text>
             </Td>
           </Tooltip>
         );
