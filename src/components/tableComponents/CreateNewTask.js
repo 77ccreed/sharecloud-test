@@ -8,7 +8,6 @@ import {
   FormLabel,
   FormHelperText,
   Input,
-  Stack,
   Text,
 } from '@chakra-ui/react'
 import { SmallAddIcon } from '@chakra-ui/icons'
@@ -29,67 +28,58 @@ const CreateNewTask = ({ submitTaskForm }) => {
       {({ values, errors, touched, handleChange, handleBlur }) => (
         <Form>
           <Text fontSize="xl" fontWeight="bold" mt={8}>Add New Task</Text>
-          {/*
-        small screen: 1 column, big screen: 3 columns
-        */}
           <Grid templateColumns={{ base: "repeat(1, 1fr)", xl: "repeat(3, 1fr)" }} gap={4} mt={4}>
-            <Stack mt={4}>
-              <FormControl>
-                <FormLabel htmlFor="name">Task Name</FormLabel>
-                <Input
-                  id="name"
-                  name="name"
-                  variant="outline"
-                  as={Field}
-                  type="text"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  errors={errors}
-                  touched={touched}
-                  isInvalid={touched.name && !!errors.name}
-                />
-                <ErrorMessage name="name">{(msg) => <FormHelperText>{msg}</FormHelperText>}</ErrorMessage>
-              </FormControl>
-            </Stack>
+            <FormControl mt={4}>
+              <FormLabel htmlFor="name">Task Name</FormLabel>
+              <Input
+                id="name"
+                name="name"
+                variant="outline"
+                as={Field}
+                type="text"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors}
+                touched={touched}
+                isInvalid={touched.name && !!errors.name}
+              />
+              <ErrorMessage name="name">{(msg) => <FormHelperText>{msg}</FormHelperText>}</ErrorMessage>
+            </FormControl>
 
-            <Stack mt={4}>
-              <FormControl>
-                <FormLabel htmlFor="start">Start Date</FormLabel>
-                <Input
-                  id="start"
-                  name="start"
-                  variant="outline"
-                  as={Field}
-                  type="date"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  errors={errors}
-                  touched={touched}
-                  isInvalid={touched.start && !!errors.start}
-                />
-                <ErrorMessage name="start">{(msg) => <FormHelperText>{msg}</FormHelperText>}</ErrorMessage>
+            <FormControl mt={4}>
+              <FormLabel htmlFor="start">Start Date</FormLabel>
+              <Input
+                id="start"
+                name="start"
+                variant="outline"
+                as={Field}
+                type="date"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors}
+                touched={touched}
+                isInvalid={touched.start && !!errors.start}
+              />
+              <ErrorMessage name="start">{(msg) => <FormHelperText>{msg}</FormHelperText>}</ErrorMessage>
+            </FormControl>
 
-              </FormControl>
-            </Stack>
 
-            <Stack mt={4}>
-              <FormControl>
-                <FormLabel htmlFor="end">End Date</FormLabel>
-                <Input
-                  id="end"
-                  name="end"
-                  variant="outline"
-                  as={Field}
-                  type="date"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  errors={errors}
-                  touched={touched}
-                  isInvalid={touched.end && !!errors.end}
-                />
-                <ErrorMessage name="end">{(msg) => <FormHelperText>{msg}</FormHelperText>}</ErrorMessage>
-              </FormControl>
-            </Stack>
+            <FormControl mt={4}>
+              <FormLabel htmlFor="end">End Date</FormLabel>
+              <Input
+                id="end"
+                name="end"
+                variant="outline"
+                as={Field}
+                type="date"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors}
+                touched={touched}
+                isInvalid={touched.end && !!errors.end}
+              />
+              <ErrorMessage name="end">{(msg) => <FormHelperText>{msg}</FormHelperText>}</ErrorMessage>
+            </FormControl>
           </Grid>
 
           <Button

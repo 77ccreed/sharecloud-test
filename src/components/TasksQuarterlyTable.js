@@ -142,7 +142,7 @@ const TasksQuarterlyTable = () => {
 
 
   //use Formik to validate the form
-  const submitTaskForm = (values) => {
+  const submitTaskForm = (values, { resetForm }) => {
 
     // Calculate the week number that the task starts on
     const startDate = new Date(values.start);
@@ -179,10 +179,7 @@ const TasksQuarterlyTable = () => {
         isClosable: true,
       })
     }
-
-    values.name = '';
-    values.start = '';
-    values.end = '';
+    resetForm();
   }
 
   const handleEditTask = (task) => {
