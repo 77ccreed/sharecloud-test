@@ -21,7 +21,6 @@ const CurrentQuarterWeeks = ({ currentQuarter, quarterWeeks }) => {
   const weekNumbers = quarterWeeks().map((week, index) => {
     const quarterWeek = (currentQuarter - 1) * NUM_MONTHS_IN_QUARTER * 4 + addDays + index + 1;
     return (
-      //make smaller screen smaller, make bigger screen bigger
       <Td
         key={quarterWeek}
         bg={"gray.100"}
