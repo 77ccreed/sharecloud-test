@@ -37,6 +37,7 @@ const CreateNewTask = ({ submitTaskForm }) => {
                 variant="outline"
                 as={Field}
                 type="text"
+                value={values.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 errors={errors}
@@ -54,6 +55,7 @@ const CreateNewTask = ({ submitTaskForm }) => {
                 variant="outline"
                 as={Field}
                 type="date"
+                value={values.start}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 errors={errors}
@@ -72,6 +74,7 @@ const CreateNewTask = ({ submitTaskForm }) => {
                 variant="outline"
                 as={Field}
                 type="date"
+                value={values.end}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 errors={errors}
