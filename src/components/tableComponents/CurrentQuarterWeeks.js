@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { Tr, Td } from "@chakra-ui/react";
 import NUM_MONTHS_IN_QUARTER from "../../constants/NUM_MONTHS_IN_QUARTER";
 
@@ -16,10 +17,25 @@ const getAddDays = (currentQuarter) => {
   }
 };
 
+
 const CurrentQuarterWeeks = ({ currentQuarter, quarterWeeks }) => {
+  const [minusOneDay, setMinusOneDay] = useState(0);
+
+  useEffect(() => {
+    if (currentQuarter === 1 && quarterWeeks().length === 12) {
+      setMinusOneDay(1);
+    }
+    if (currentQuarter === 1 && quarterWeeks().length === 13) {
+      setMinusOneDay(0);
+    }
+  }, [currentQuarter, quarterWeeks]);
+
+
   const addDays = getAddDays(currentQuarter);
   const weekNumbers = quarterWeeks().map((week, index) => {
-    const quarterWeek = (currentQuarter - 1) * NUM_MONTHS_IN_QUARTER * 4 + addDays + index + 1;
+    const quarterWeek = (currentQuarter - 1) * NUM_MONTHS_IN_QUARTER * 4 + addDays + index + 1 - (currentQuarter === 1 ? 0 : minusOneDay);
+
+
     return (
       <Td
         key={quarterWeek}

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { addMonths, getQuarter, getWeek, format, differenceInCalendarISOWeeks } from 'date-fns';
 import {
   Box,
@@ -48,12 +48,23 @@ const getAddDays = (currentQuarter) => {
 };
 
 const QuarterlyTableTaskRow = ({ task, currentQuarter, quarterWeeks, currentDate }) => {
+  const [minusOneDay, setMinusOneDay] = useState(0);
+
+  useEffect(() => {
+    if (currentQuarter === 1 && quarterWeeks().length === 12) {
+      setMinusOneDay(1);
+    }
+    if (currentQuarter === 1 && quarterWeeks().length === 13) {
+      setMinusOneDay(0);
+    }
+  }, [currentQuarter, quarterWeeks]);
+
   return (
     <Tr key={task.id + task.name} textTransform="uppercase" letterSpacing="wider" textAlign="center" borderWidth="1px" borderColor="gray.200" fontSize="16px" fontWeight="medium">
       {quarterWeeks().map(week => {
         const currentYear = currentDate.getFullYear();
 
-        week = week + (currentQuarter - 1) * NUM_MONTHS_IN_QUARTER * 4 + getAddDays(currentQuarter);
+        week = week + (currentQuarter - 1) * NUM_MONTHS_IN_QUARTER * 4 + getAddDays(currentQuarter) - (currentQuarter === 1 ? 0 : minusOneDay)
 
         let isTaskBelongsToCurrentYear = task.start.includes(currentYear) && task.end.includes(currentYear);
 
@@ -102,6 +113,7 @@ const QuarterlyTableTaskRow = ({ task, currentQuarter, quarterWeeks, currentDate
               borderWidth={"1px"}
               borderColor={"gray.200"}
             >
+              {week}
             </Td>
           </Tooltip>
         );
@@ -224,7 +236,7 @@ const TasksQuarterlyTable = () => {
       <Table variant="simple" size={{ base: "sm", md: "md" }}>
 
         <Tbody >
-          <CurrentQuarterWeeks currentQuarter={currentQuarter} quarterWeeks={quarterWeeks} />
+          <CurrentQuarterWeeks currentQuarter={currentQuarter} quarterWeeks={quarterWeeks} currentDate={currentDate} />
 
           {tasks.map(task => {
             return (
